@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        :root {
+            --bg-color-0: #000;
+            --bg-color-1: #333;
+            --bg-color-2: #666;
+            --bg-color-3: #999;
+            --bg-color-4: #ccc;
+            --header-height: 75px;
+            --footer-height: 150px;
+            --content-header-height: 50px;
+            --sidebar-expanded-width: 150px;
+            --sidebar-collapsed-width: 50px;
+        }
+        html, body {
+            width: 100vw;
+            height: 100vh;
+        }
+        body {
+            background-color: var(--bg-color-0);
+            margin: 0;
+        }
+        header, footer {
+            background-color: var(--bg-color-1);
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        header {
+            height: var(--header-height);
+            position: sticky;
+            top: 0;
+            padding: 0 1rem;
+            z-index: 1000;
+            justify-content: space-between;
+        }
+        /* header > * {
+            background-color: transparent !important;
+        } */
+        header section {
+            display: flex;
+            align-items: center;
+        }
+        header section span.material-symbols-outlined {
+            font-size: 2rem;
+            margin: 0px 2rem;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+        header nav a:hover {
+            background-color: var(--bg-color-2);
+            border-bottom: white 2px solid;
+        }
+        footer {
+            height: var(--footer-height);
+            justify-content: center;
+        }
+        main {
+            background-color: var(--bg-color-2);
+            /* max-height: 100vh; */
+            /* min-height: calc(100vh - var(--header-height) - var(--content-header-height)); */
+            min-height: calc(100vh - var(--header-height)) !important;
+            max-height: calc(100vh - var(--header-height)) !important;
+            overflow: hidden;
+            display: flex;
+        }
+        main aside {
+            background-color: var(--bg-color-3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        main aside.sidebar {
+            width: var(--sidebar-expanded-width);
+        }
+        main aside.sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+        main aside.sidebar.collapsed label {
+            display: none;
+        }
+        main aside nav {
+            display: flex;
+            flex-direction: column;
+        }
+        main aside nav button {
+            background: none;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+        main aside nav button:hover {
+            background-color: var(--bg-color-2);
+        }
+        main aside nav button label {
+            margin-left: 1rem;
+        }
+        /* main aside.collapsed nav button label {
+            display: none;
+        } */
+        main aside nav.sidenavbar.scrolled {
+            position: relative;
+            top: var(--footer-height);
+        }
+        main section {
+            background-color: var(--bg-color-4);
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        main section .header {
+            background-color: var(--bg-color-3);
+            height: var(--content-header-height);
+            position: sticky;
+            top: 0;
+            padding: 0 1rem;
+            z-index: 500;
+            border-bottom: 2px solid var(--bg-color-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        main section .content {
+            padding: 1rem;
+        }
+        button {
+            border: none;
+            border-radius: 0;
+        }
+        button,
+        button label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <section>
+            <span class="material-symbols-outlined">web</span>
+            <h1>My Website</h1>
+        </section>
+        <nav>
+            <a href="#">Home</a> |
+            <a href="#">About</a> |
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <aside class="sidebar">
+            <nav class="sidenavbar">
+                <button type="button">
+                    <span class="material-symbols-outlined">home</span>
+                    <label>Home</label>
+                </button>
+                <button type="button">
+                    <span class="material-symbols-outlined">info</span>
+                    <label>About</label>
+                </button>
+                <button type="button">
+                    <span class="material-symbols-outlined">chat</span>
+                    <label>Contact</label>
+                </button>
+            </nav>
+            <button type="button" class="toggle"><span class="material-symbols-outlined">left_panel_close</span></button>
+        </aside>
+        <section>
+            <div class="header">
+                <p>Sticky Header Content</p>
+            </div>
+            <div class="content">
+                <h1>Section 1</h1>
+                <p>Hello, world!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin est lorem, blandit at elit at, volutpat commodo nibh. Phasellus ut ipsum hendrerit, egestas nulla non, rhoncus nunc. Aliquam id sollicitudin augue. Cras in risus luctus, tempus quam eget, bibendum metus. Etiam elit nunc, consequat ultrices justo ac, dictum elementum neque. Phasellus at sagittis sem, non tincidunt odio. Suspendisse eu mauris euismod tellus vehicula iaculis sit amet ut velit. Nullam pharetra urna non erat consectetur egestas. Maecenas ultrices tempus scelerisque. Suspendisse dignissim nibh sed felis elementum rutrum. Sed tempus sodales tellus, et feugiat urna lobortis et.</p>
+                <h2>Section 2</h2>
+                <p>Curabitur lobortis urna non sapien accumsan maximus. Aenean odio neque, consectetur vel posuere eget, volutpat ut justo. Phasellus nibh sem, vulputate nec nulla a, bibendum consequat elit. Ut porttitor eros non velit tincidunt laoreet. Donec porttitor blandit ante et tincidunt. Sed ac consectetur eros. Sed id pellentesque orci, at mollis elit. Duis bibendum felis sed enim posuere, eu varius ligula convallis. Sed facilisis sagittis leo ut vulputate. Maecenas lacinia interdum sapien, et tempor sem. Suspendisse varius elementum diam non accumsan. Aenean rhoncus quis tortor et tempus. Nam fringilla venenatis tortor sit amet tincidunt. Cras eget mi blandit, suscipit dolor in, facilisis ante.</p>
+                <h3>Section 3</h3>
+                <p>Duis vel ullamcorper velit. Donec rutrum efficitur enim, ut luctus tortor molestie eu. Mauris non ligula ultricies, blandit dolor in, euismod sem. Ut sodales, lectus quis interdum tincidunt, ipsum mauris accumsan lacus, quis finibus nulla nulla vitae elit. Fusce pharetra faucibus felis, a lobortis turpis malesuada id. Etiam a sagittis eros. Cras eu lorem sed metus lacinia commodo eu a turpis. Quisque dictum felis sit amet mi placerat, at porttitor magna gravida. Nullam faucibus leo et sem ullamcorper consectetur.</p>
+                <h4>Section 4</h4>
+                <p>Fusce aliquet, urna quis finibus facilisis, mi massa ultrices lacus, imperdiet imperdiet urna nibh a lorem. Nam semper orci et dictum convallis. Morbi congue posuere ullamcorper. Vivamus mattis odio sed eleifend cursus. Vivamus facilisis, dolor eu semper maximus, odio lorem consequat quam, finibus malesuada risus leo ut leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam efficitur cursus nisl a rhoncus. Aenean tincidunt lorem non felis dictum pretium. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec eu arcu commodo, aliquet dui aliquam, pulvinar nulla. Nunc pellentesque est magna, eget porta nulla hendrerit ut.</p>
+                <h5>Section 5</h5>
+                <p>Quisque ornare, nulla lobortis sollicitudin pretium, arcu erat vulputate arcu, vel pharetra purus eros a nulla. Curabitur fermentum dolor interdum cursus convallis. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam dignissim dapibus leo, ac porttitor sapien suscipit ornare. Maecenas varius tellus mi, eget dignissim risus aliquam sit amet. Nulla rhoncus sit amet orci at dapibus. Cras interdum ex id justo accumsan, vel consectetur augue sollicitudin. Donec eget mauris urna. Pellentesque vitae lectus erat. Nam varius mauris id mauris molestie, a viverra sapien vehicula. Donec sollicitudin orci quis diam mattis, ut fermentum velit mollis.</p>
+                <h6>Section 6</h6>
+                <p>Fusce sagittis ipsum quis diam tempor ultricies. Aenean luctus tellus sem, eu laoreet metus tempus ac. Vivamus lacinia orci et ligula fermentum, eu fermentum nisi iaculis. Phasellus sapien felis, feugiat ut ex eget, eleifend tincidunt diam. Vivamus venenatis tortor dolor, ac tincidunt augue volutpat quis. Sed eu ultrices orci. Vivamus nec bibendum ex, ac mollis mauris. Etiam euismod sapien eget dolor interdum vulputate. Sed vulputate eros vulputate velit fermentum convallis. Integer suscipit enim eget enim rutrum interdum. Maecenas quis ultricies diam, sed maximus orci. Nullam vehicula, tortor eget condimentum rutrum, odio nulla auctor nisl, at ullamcorper lectus augue quis magna. Nunc nibh enim, semper eget justo ut, lacinia venenatis erat. Ut sit amet luctus sem. Pellentesque fermentum mauris at nulla egestas faucibus.</p>
+                <p>Nunc vehicula gravida enim, ac pretium risus posuere id. Proin euismod, nulla ac vestibulum consectetur, nulla leo convallis velit, pulvinar suscipit massa dolor a tellus. Aliquam ut elit varius, venenatis erat ac, elementum nulla. Nullam ac finibus nisi. Nam in mauris et libero vehicula vestibulum eget quis ex. Aenean a nunc at felis posuere egestas ut id est. Morbi efficitur quam a semper scelerisque. Maecenas elit tellus, ultricies eu fermentum et, sagittis nec nisl. In id leo ut magna tincidunt cursus ac id est. In hac habitasse platea dictumst. Nulla ultrices pellentesque dui, nec blandit orci blandit sed. Pellentesque placerat at magna id accumsan. Duis dui ipsum, congue vitae dignissim sit amet, pretium id diam.</p>
+                <p>Praesent condimentum tristique nunc quis viverra. Vestibulum convallis est velit, ut accumsan velit venenatis commodo. Nulla consequat pharetra nisl, vitae venenatis mauris tempor non. Proin in nunc vitae ante eleifend malesuada. Proin at orci nec lacus fermentum vehicula at in mauris. Mauris interdum turpis et ipsum tincidunt, vitae lacinia nunc venenatis. Aenean eu posuere libero. Pellentesque sed convallis est, id mattis felis. Aliquam elementum augue ac efficitur sodales. Quisque pretium felis et sem interdum, ut molestie magna efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas sed arcu vel nisi lacinia tempus. Nullam vestibulum rutrum iaculis. Vivamus ut tempor dolor.</p>
+                <p>Phasellus aliquam sem at scelerisque scelerisque. Proin accumsan a massa sit amet varius. Praesent dapibus sollicitudin pretium. Aenean nec ligula sapien. Maecenas dignissim ultricies eros, at mattis sem mattis tincidunt. Morbi vel sapien ac sem blandit commodo vel ut neque. Proin pellentesque hendrerit velit, quis mattis ipsum mattis eget. Fusce eget libero lectus.</p>
+                <p>Phasellus feugiat purus mi, at cursus arcu placerat non. Mauris quis metus ut sapien bibendum sagittis elementum in orci. Integer risus nisl, egestas sit amet finibus a, tempor non dui. Integer efficitur nisi ac dolor suscipit, a placerat justo pharetra. Nullam quis velit egestas, dictum eros ut, varius libero. Aliquam eu erat blandit, placerat risus a, egestas nisi. Maecenas eleifend vestibulum pharetra. Pellentesque vel molestie arcu. Suspendisse viverra enim eu ligula ultricies, molestie finibus augue ultrices. Integer ut libero quis felis auctor facilisis id et dui. Proin felis urna, luctus in dolor sit amet, congue semper ipsum.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h6>&copy; 2025 My Website</h6>
+    </footer>
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const toggleButton = document.querySelector('button.toggle');
+        const toggleIcon = toggleButton.querySelector('span.material-symbols-outlined');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                toggleIcon.textContent = 'left_panel_open';
+            } else {
+                toggleIcon.textContent = 'left_panel_close';
+            }
+        });
+    </script>
+</body>
+</html>
