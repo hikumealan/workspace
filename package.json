@@ -1,0 +1,13 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Workspace for codespace experiments",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx -y http-server ./ -o index.html -c -1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
