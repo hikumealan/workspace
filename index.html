@@ -14,9 +14,11 @@
             --bg-color-4: #ccc;
             --header-height: 75px;
             --footer-height: 150px;
-            --content-header-height: 50px;
+            --content-header-height: 65px;
             --sidebar-expanded-width: 150px;
             --sidebar-collapsed-width: 50px;
+            --z-index: 1000;
+            --z-index-step: 500;
         }
         html, body {
             width: 100vw;
@@ -37,7 +39,7 @@
             position: sticky;
             top: 0;
             padding: 0 1rem;
-            z-index: 1000;
+            z-index: var(--z-index);
             justify-content: space-between;
         }
         /* header > * {
@@ -94,6 +96,7 @@
             flex-direction: column;
         }
         main aside nav button {
+            height: var(--content-header-height);
             background: none;
             display: flex;
             align-items: center;
@@ -109,10 +112,10 @@
         /* main aside.collapsed nav button label {
             display: none;
         } */
-        main aside nav.sidenavbar.scrolled {
+        /* main aside nav.sidenavbar.scrolled {
             position: relative;
             top: var(--footer-height);
-        }
+        } */
         main section {
             background-color: var(--bg-color-4);
             flex-grow: 1;
@@ -124,7 +127,7 @@
             position: sticky;
             top: 0;
             padding: 0 1rem;
-            z-index: 500;
+            z-index: (var(--z-index-step) * 1);
             border-bottom: 2px solid var(--bg-color-2);
             display: flex;
             align-items: center;
@@ -134,6 +137,7 @@
             padding: 1rem;
         }
         button {
+            height: var(--content-header-height);
             border: none;
             border-radius: 0;
         }
@@ -214,6 +218,60 @@
                 toggleIcon.textContent = 'left_panel_close';
             }
         });
+
+        // Keep the .sidenavbar visible above the footer when the footer
+        // scrolls into view. We compute how many pixels the footer has
+        // entered the viewport (overlap) and apply that as a top offset
+        // (moved upward) to the nav via position: relative.
+        (function offsetForFooter(){
+            const sidenav = document.querySelector('.sidenavbar');
+            const sectionHeader = document.querySelector('main section .header');
+            const footer = document.querySelector('footer');
+
+            if (!footer) return;
+
+            function onScroll() {
+                const footerRect = footer.getBoundingClientRect();
+                const viewportH = window.innerHeight || document.documentElement.clientHeight;
+
+                // amount of footer visible in viewport (pixels)
+                const overlap = Math.max(0, viewportH - footerRect.top);
+
+                if (sidenav) {
+                    if (overlap > 0) {
+                        sidenav.style.position = 'relative';
+                        sidenav.style.top = `${overlap}px`;
+                        sidenav.classList.add('scrolled');
+                    } else {
+                        sidenav.style.position = '';
+                        sidenav.style.top = '';
+                        sidenav.classList.remove('scrolled');
+                    }
+                }
+
+                if (sectionHeader) {
+                    if (overlap > 0) {
+                        sectionHeader.style.position = 'sticky';
+                        sectionHeader.style.top = `${overlap}px`;
+                        sectionHeader.classList.add('scrolled');
+                    } else {
+                        sectionHeader.style.position = 'sticky';
+                        sectionHeader.style.top = '0';
+                        sectionHeader.classList.remove('scrolled');
+                    }
+                }
+            }
+
+            // Run on load and on scroll.
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            // If main content scrolls internally, also listen to that.
+            const mainSection = document.querySelector('main section');
+            if (mainSection) mainSection.addEventListener('scroll', onScroll, { passive: true });
+
+            // initial check
+            onScroll();
+        })();
     </script>
 </body>
 </html>
